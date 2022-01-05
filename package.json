@@ -5,11 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "trade-asap": "node src/cli/send-trade-asap-signal.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "3commas-api-node": "^1.1.1"
+    "3commas-api-node": "^1.1.1",
+    "netlify-cli": "^8.6.5"
   }
 }
