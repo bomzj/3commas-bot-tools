@@ -1,4 +1,4 @@
-import TradeAsapSignal from '../../trade-asap-signal.js'
+import TradeAsapSignal from '../../src/trade-asap-signal.js'
 
 exports.handler = async (event, context) => {
   let { subject, from, to, body } = event.queryStringParameters
