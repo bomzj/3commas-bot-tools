@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "trade-asap": "node src/cli/send-trade-asap-signal.js"
   },
