@@ -1,16 +1,12 @@
 import TradeAsapSignal from '../../src/trade-asap-signal.js'
 
-exports.handler = async (event, context) => {
+export async function handler(event, context) {
+  let {apiKey, apiSecret, botId, isPaperTrading} = JSON.parse(event.body)
+  let signal = new TradeAsapSignal(apiKey, apiSecret, isPaperTrading)
+  signal.tradeAllPairs(botId)
   
-  let { subject, from, to, body } = event.queryStringParameters
-  
-  console.log('keke')
   return {
     statusCode: 200,
-    body: JSON.stringify({message: "Hello World"})
+    body: JSON.stringify({message: `Sent trade all pairs ASAP signal to 3Commas bot (id:${botId})`})
   }
-  // callback(null, {
-  //   statusCode: 200,
-  //   body: 'keke'
-  // })
 }
