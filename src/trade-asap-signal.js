@@ -15,12 +15,12 @@ export default class TradeAsapSignal {
   }
   
   async notifyBotToStartTradingAsap(botId) {
-    let pairs = await this.getBotPairs(id)
+    let pairs = await this.getBotPairs(botId)
     pairs.forEach(p => this.notifyBotToStartTradingSinglePairAsap(botId, p))
   }
 
   async notifyBotToStartTradingSinglePairAsap(botId, pair) {
-    return await this.api.botStartNewDeal({
+    return this.api.botStartNewDeal({
       bot_id: botId,
       skip_signal_checks: true,
       pair
