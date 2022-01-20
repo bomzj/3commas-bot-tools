@@ -11,16 +11,16 @@ function main() {
     
     process.exit()
   }
-  let [apiKey, apiSecret, botId, timeIntervalBetweenSignals, isPaperTrading] = process.argv.slice(2)
+  let [apiKey, apiSecret, botIds, timeIntervalBetweenSignals, isPaperTrading] = process.argv.slice(2)
   let signal = new TradeAsapSignal(apiKey, apiSecret, isPaperTrading)
     
   if (timeIntervalBetweenSignals > 0) {
     // Send ASAP indicator at some meaningful rate without risking to get banned by 3commas
-    let interval = setInterval(signal.tradeAllPairs.bind(signal, botId), timeIntervalBetweenSignals || 60 * 1000)
+    let interval = setInterval(signal.sendTradeAllPairsSignalToBots.bind(signal, botIds), timeIntervalBetweenSignals || 60 * 1000)
     
     console.log('Sending start deal ASAP signals to 3Commas bot...')
   } else {
-    signal.tradeAllPairs(botId)
+    signal.sendTradeAllPairsSignalToBots(botId)
     console.log('Sent start deal ASAP signal to 3Commas bot')
   }
 }

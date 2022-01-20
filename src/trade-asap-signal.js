@@ -3,20 +3,23 @@ import threeCommasAPI from '3commas-api-node'
 export default class TradeAsapSignal {
   api = undefined
   
-  constructor(apiKey, apiSecret, isPaperTrading) {
+  constructor(apiKey, apiSecret) {
     this.api = new threeCommasAPI({
       apiKey,
-      apiSecret,
-      forcedMode: isPaperTrading ? 'paper' : 'real'
+      apiSecret
     })
   }
 
-  async tradeAllPairs(botId) {
-    let pairs = await this.getBotPairs(botId)
-    pairs.forEach(p => this.tradePair(botId, p))
+  async notifyBotsToStartTradingAsap(...botIds) {
+    botIds?.forEach(id => this.notifyBotToStartTradingAsap(id))
   }
   
-  async tradePair(botId, pair) {
+  async notifyBotToStartTradingAsap(botId) {
+    let pairs = await this.getBotPairs(id)
+    pairs.forEach(p => this.notifyBotToStartTradingSinglePairAsap(botId, p))
+  }
+
+  async notifyBotToStartTradingSinglePairAsap(botId, pair) {
     return await this.api.botStartNewDeal({
       bot_id: botId,
       skip_signal_checks: true,
