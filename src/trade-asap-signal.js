@@ -11,12 +11,14 @@ export default class TradeAsapSignal {
   }
 
   async notifyBotsToStartTradingAsap(...botIds) {
-    botIds?.forEach(id => this.notifyBotToStartTradingAsap(id))
+    let requests = botIds?.map(id => this.notifyBotToStartTradingAsap.bind(this, id))
+    return Promise.all(requests)
   }
   
   async notifyBotToStartTradingAsap(botId) {
     let pairs = await this.getBotPairs(botId)
-    pairs.forEach(p => this.notifyBotToStartTradingSinglePairAsap(botId, p))
+    let requests = pairs.map(p => this.notifyBotToStartTradingSinglePairAsap.bind(this, botId, p))
+    return Promise.all(requests)
   }
 
   async notifyBotToStartTradingSinglePairAsap(botId, pair) {

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "trade-asap": "node src/cli/send-trade-asap-signal.js"
+    "trade-asap": "node src/cli/send-trade-asap-signal.js",
+    "dev": "netlify dev"
   },
   "author": "",
   "license": "ISC",
