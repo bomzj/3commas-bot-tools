@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "3commas-api-node": "^1.1.1",
-    "netlify-cli": "^8.6.5"
+    "axios": "^0.25.0"
   }
 }
